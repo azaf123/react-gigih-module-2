@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+/* image */
+.App .image-song{
+  margin-top: 200px;
+}
+
+@media(max-width:671px){
+
+}
+
