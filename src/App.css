@@ -37,9 +37,12 @@
   }
 }
 
-
+body {
+  justify-content: center;
+  background: rgb(105, 165, 255);
+}
 #card {
-  margin-top: 100px;
+  margin-top: 200px;
 
 }
 #card .container {
@@ -50,32 +53,43 @@
   border-radius: 20px;
   
 }
-#card .container img {
-  height: 230px;
+#card .container #image-song {
+  width: 300px;
   border-radius: 20px;
   border-bottom-right-radius: 100px;
   border-bottom-left-radius: 100%;
 }
-#card .container .title {
-  padding-top: 10px;
+#card .container #title {
+  /* padding-top: 10px; */
   color: aliceblue;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 13px;
   margin-top: 80px;
 }
-#card .container .artist {
+#card .container #artist {
   padding-top: 10px;
-  font-size: 17px;
+  font-size: 13px;
   color: white;
 }
-#card .container .albums {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 17px;
-  color: aliceblue;
+#card .container #select select{
+  
+ font-style: italic;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  background-color: aliceblue;
+  padding: 10px;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-color: white;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: black;
 }
-#card .container .btn {
-  /* margin-right: 50px; */
+
+/* #card .container .btn {
+  margin-right: 50px;
   margin-bottom: 30px;
   margin-top: 20px;
   background-color: aliceblue;
@@ -89,8 +103,8 @@
   opacity: 0.9;
   cursor: pointer;
   color: black;
-}
-#card .container .btn:hover {
+} */
+/* #card .container .btn:hover {
   margin-bottom: 30px;
   margin-top: 20px;
   background-color: aliceblue;
@@ -103,7 +117,7 @@
   font-size: 12px;
   opacity: 0.5;
   color: black;
-}
+} */
 
 @media(max-width:671px){
 

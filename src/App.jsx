@@ -1,28 +1,27 @@
 import axios from 'axios';
 import { Component, Fragment, useState} from 'react';
-
+import data from './data';
 import './App.css';
 
 class AlbumImage extends Component {
 
-  state={
-    artists :[],
-    album:[]
-  }
   componentDidMount(){
-    const url= "https://gist.githubusercontent.com/aryapradipta9/e6492383477803b233916e01f36d5465/raw/66942c739d66d3774303f84071696aa865a07077/single-sample.json"
-    axios({
-      method:'get',
-      url : url
-    })
-      .then(dataapi =>{
-        console.log(dataapi.data.album)
-        this.setState({
-          artists:dataapi.data.album.artists,
-          album:dataapi.data.album
-        })
-      })
-    .catch(err=>console.log(err))
+    try{
+      console.log(data);
+      const imgAlbum = document.getElementById("image-song");
+      const albumTitle = document.getElementById("title");
+      const artistName = document.getElementById("artist");
+  
+      imgAlbum.src = data.album.images[1].url;
+      albumTitle.innerText = data.album.name;
+      artistName.innerText = data.artists[0].name;
+     
+      
+    }
+    catch(err){
+      alert(err.message);
+    }
+      
 }
 
   render() {
@@ -35,35 +34,18 @@ class AlbumImage extends Component {
           </div>
           <div className="container">
             <div>
-              <img src="https://picsum.photos/400/300" className="image-song" alt=""></img>
+              <img src="#" id="image-song" alt=""></img>
             </div>
-            <div className="title">
-            {/* {this.state.album.map((row,index)=>{
-                return(
-                  <div>
-                    <h2>{row.name}</h2>
-                  </div>
-                )
-              })} */}
+            <div id="title">
+            
             </div>
-            <div className="artist">
-            {this.state.artists.map((row,index)=>{
-                return(
-                  <div>
-                    <h2>{row.name}</h2>
-                  </div>
-                )
-              })}
+            <div id="artist">
+            
             </div>
-
-            <div className="albums">
-              Tujuh Belas
-            </div>
-
-            <div className="btn">
-              <span>
-                <i> Album Details </i>
-              </span>
+            <div id="select">
+              <select>
+                <option value="">Select a song</option>
+              </select>
             </div>
           </div>
         </div>
