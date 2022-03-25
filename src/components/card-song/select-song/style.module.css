@@ -1,0 +1,23 @@
+.container{
+    margin-top: 60px;
+ 
+}
+
+.selectSong{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(38, 133, 216);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    font-size: 12px;
+    opacity: 0.9;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    border-color: aqua;
+    font-family: 'Roboto', sans-serif;
+}
+
