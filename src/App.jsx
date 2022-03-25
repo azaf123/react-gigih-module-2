@@ -60,9 +60,9 @@ import Home from './pages/home';
 function App() {
   return (
     <div className="App">
-      <div className='row'>
+      
     <Home />
-      </div>
+     
     </div>
   );
 }
