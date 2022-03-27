@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Component, Fragment, useState} from 'react';
-import data from './data';
 import './App.css';
 import Home from './pages/home';
 // class AlbumImage extends Component {
@@ -59,10 +58,8 @@ import Home from './pages/home';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="App">      
     <Home />
-     
     </div>
   );
 }
