@@ -4,9 +4,7 @@ const SelectSong = () => {
     return(
         <div className={Style.container}>
             <div className={Style.row}>
-                <select name="" id="" className={Style.selectSong}>
-                    <option value="">List of Song</option>
-                </select>
+                <button className={Style.ButtonSelect}>Select</button>
             </div>
         </div>
     )

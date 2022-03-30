@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Component, Fragment, useState} from 'react';
 import './App.css';
 import Home from './pages/home';
+import Login from './components/navbar/login';
 // class AlbumImage extends Component {
 
 //   componentDidMount(){
@@ -58,8 +59,19 @@ import Home from './pages/home';
 
 function App() {
   return (
-    <div className="App">      
+    <div className="App">  
+            
     <Home />
+    {/* {this.state.accessToken ? (
+          <>
+            <input onChange={this.handleChange} />
+            <button onClick={this.handleSearch}>Cari</button>
+
+            <div>{this.state.data.map((item) => item.name)}</div>
+          </>
+        ) : (
+          <button onClick={this.handleLogin}>Login</button>
+        )} */}
     </div>
   );
 }

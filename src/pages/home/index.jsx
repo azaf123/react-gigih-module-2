@@ -1,21 +1,26 @@
-import CardMaster from "../../components/card-song/card-master";
 import Style from "./style.module.css";
 import SearchBar from "../../components/navbar/search-bar";
-const Home = () => {
+import Login from "../../components/navbar/login";
+import { Component } from "react";
 
-    return (
+class Home extends Component {
+    state = {
+        accessToken: window.location.hash
+            .substring(1, window.location.hash.length - 1)
+            .split("&")[0]
+            .split("=")[1],
 
-        <div className={Style.container}>
-            <div className={Style.header}>
-                <SearchBar />
-            </div>
-            <div className={Style.card}>
-                <CardMaster />
-            </div>
-
-
-        </div>
-    );
+    }
+    render() {
+        return (
+            <header>
+                <div className={Style.container}>
+                    {this.state.accessToken ?
+                        <SearchBar accessToken={this.state.accessToken} /> : <Login />}
+                </div>
+            </header>
+        );
+    }
 }
 
 
