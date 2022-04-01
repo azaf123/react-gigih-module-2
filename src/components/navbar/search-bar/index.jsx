@@ -6,10 +6,6 @@ import Style from "./style.module.css";
 
 import CardMaster from "../../card-song/card-master";
 import SelectSong from "../../card-song/select-song";
-import SongImage from "../../card-song/song-image";
-import SongInfo from "../../card-song/song-info";
-import login from "../login";
-import data from "../../../dataloop";
 
 
 class SearchBar extends Component {
@@ -18,7 +14,6 @@ class SearchBar extends Component {
     }
 
     state = {
-
         search: "",
         data: [],
     
@@ -92,7 +87,7 @@ class SearchBar extends Component {
                 </div>
                 <div className={Style.card}>
                     {this.state.data.map((song, index) => (
-                    <CardMaster song={song.album.images[1].url}
+                    <CardMaster key={index} song={song.album.images[1].url}
                     artist={song.name}
                     title={song.album.name}/>
                     ))}
