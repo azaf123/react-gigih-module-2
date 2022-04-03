@@ -1,24 +1,29 @@
 import Style from "./style.module.css";
-import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
-import SongImage from "../song-image";
-import { getValue } from "@testing-library/user-event/dist/utils";
-const SelectSong = ({ selected, setSelected,ura }) => {
-    // const [isActive , setIsActive] = useState(false);
 
 
+const SelectSong = ({setSongSelected}) => {
+    return (
+        <div className={Style.container}>
+            <div className={Style.row}>
+                <div className="btn">
+                <button onClick={setSongSelected} className={Style.ButtonSelect} >Select</button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const DeselectSong = ({setSongDeselected}) => {
 
 
     return (
         <div className={Style.container}>
             <div className={Style.row}>
-                <button className={Style.ButtonSelect} >
-                    <div className={Style.ButtonSelectText}>
-                        Select Song
-                    </div>
-                </button>
+                <button onClick={setSongDeselected} className={Style.ButtonDeselect} >Deselect</button>
             </div>
         </div>
     )
 }
+
 export default SelectSong;
+export { DeselectSong };

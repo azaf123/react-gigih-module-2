@@ -2,7 +2,8 @@ import axios from 'axios';
 import { Component, Fragment, useState} from 'react';
 import './App.css';
 import Home from './pages/home';
-import Login from './components/navbar/login';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 // class AlbumImage extends Component {
 
 //   componentDidMount(){

@@ -30,3 +30,39 @@
     width: 250px;
 }
 
+.ButtonSelect{
+    font-style: bold;
+    margin-bottom: 20px;
+    background-color: rgb(21, 22, 19);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    font-size: 12px;
+    opacity: 0.9;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border-color: aqua;
+    font-family: 'Roboto', sans-serif;
+    width: 250px;
+}
+.ButtonDeselect{
+    font-style: bold;
+    margin-bottom: 20px;
+    background-color: rgb(234, 0, 0);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    font-size: 12px;
+    opacity: 0.9;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border-color: aqua;
+    font-family: 'Roboto', sans-serif;
+    width: 250px;
+}

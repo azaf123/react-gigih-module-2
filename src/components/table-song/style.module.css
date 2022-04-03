@@ -1,10 +1,4 @@
 
-.container{
-    margin-top: 50px;
-    padding-left: 100px;
-    padding-right: 100px;
-    
-}
 .title{
     font-size: 30px;
     font-weight: bold;
@@ -44,14 +38,4 @@
     border-radius: 10px;
   
    
-}
-
-.card{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    
 }
