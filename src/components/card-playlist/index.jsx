@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./style.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-const CardPlaylist = ({ accessToken, selected }) => {
+const CardPlaylist = ({ selected }) => {
+
+  const accessToken = useSelector(state => state.token.token);
   const [playlist, setPlaylist] = useState({
     namePlaylist: "",
     descriptionPlaylist: "",
@@ -21,7 +24,7 @@ const CardPlaylist = ({ accessToken, selected }) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log("playlist" + res.data.items);
         setPlaylistData(res.data.items);
       })
       .catch((err) => {
@@ -50,6 +53,7 @@ const CardPlaylist = ({ accessToken, selected }) => {
       .then((res) => {
         console.log(res.data);
         setPlaylist_id(res.data.id);
+        return alert("Playlist created");
       })
       .catch((err) => {
         console.log(err.message);
@@ -85,7 +89,6 @@ const CardPlaylist = ({ accessToken, selected }) => {
   useEffect(() => {
     getPlaylist();
   }, []);
-
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -131,9 +134,12 @@ const CardPlaylist = ({ accessToken, selected }) => {
         <h4>1. You can search first the song in the searchbar</h4>
         <h4>2. You can add the song to the playlist</h4>
         <h4>3. You can create a new playlist</h4>
-        <h4>4. You can click get playlis button on the left to check your playlist that you have created</h4>
+        <h4>
+          4. You can click get playlis button on the left to check your playlist
+          that you have created
+        </h4>
         <h4>4. You can see the playlist</h4>
-        
+
         <div className="row">
           <div className="col-lg-6">
             <div className="card-playlist">
@@ -189,11 +195,13 @@ const CardPlaylist = ({ accessToken, selected }) => {
           <br></br>
           <br></br>
           <h5>Playlist</h5>
-          
         </div>
+
         {playlistData.map(
           (item, index) =>
-            item.tracks.total >= 0 && (
+            item.tracks.total >= 0 &&
+            (console.log(item),
+            (
               <div className="playlist-data">
                 <div key={index}>
                   <h5>{item.name}</h5>
@@ -204,7 +212,7 @@ const CardPlaylist = ({ accessToken, selected }) => {
                   </Button>
                 </div>
               </div>
-            )
+            ))
         )}
       </div>
     </>

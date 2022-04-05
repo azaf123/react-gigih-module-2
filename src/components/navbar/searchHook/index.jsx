@@ -2,7 +2,10 @@ import { useEffect, useState, useCallback } from "react";
 import Style from "./style.module.css";
 import SongTable from "../../table-song";
 import CardPlaylist from "../../card-playlist";
-const SearchHook = ({ accessToken,selected,setSelected }) => {
+import { useSelector } from "react-redux";
+
+const SearchHook = ({selected,setSelected }) => {
+  const accessToken = useSelector(state => state.token.token);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

@@ -4,6 +4,8 @@ import './App.css';
 import Home from './pages/home';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 // class AlbumImage extends Component {
 
 //   componentDidMount(){
@@ -60,20 +62,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
+    <Provider store={store} >
+
     <div className="App">  
             
     <Home />
     {/* {this.state.accessToken ? (
-          <>
-            <input onChange={this.handleChange} />
-            <button onClick={this.handleSearch}>Cari</button>
-
-            <div>{this.state.data.map((item) => item.name)}</div>
-          </>
-        ) : (
-          <button onClick={this.handleLogin}>Login</button>
-        )} */}
+      <>
+      <input onChange={this.handleChange} />
+      <button onClick={this.handleSearch}>Cari</button>
+      
+      <div>{this.state.data.map((item) => item.name)}</div>
+      </>
+      ) : (
+        <button onClick={this.handleLogin}>Login</button>
+      )} */}
     </div>
+      </Provider>
   );
 }
 

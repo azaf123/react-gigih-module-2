@@ -2,7 +2,9 @@ import Style from "./style.module.css";
 import Navbar from "../../components/navbar/navbar-master";
 import CardPlaylist from "../../components/card-playlist";
 import { useState, useEffect } from "react";
-import SongTable from "../../components/table-song";
+import { useSelector } from "react-redux";
+
+
 
 const Home = () => {
   // state = {
@@ -13,20 +15,23 @@ const Home = () => {
 
   // }
   const [selected, setSelected] = useState([]);
-  const [accessToken, setAccessToken] = useState("");
+  // const [accessToken, setAccessToken] = useState("");
+  // useEffect(() => {
+  //   const hash = window.location.hash
+  //     .substring(1, window.location.hash.length - 1)
+  //     .split("&")[0]
+  //     .split("=")[1];
+  //   setAccessToken(hash);
+  // }, []);
 
-  useEffect(() => {
-    const hash = window.location.hash
-      .substring(1, window.location.hash.length - 1)
-      .split("&")[0]
-      .split("=")[1];
-    setAccessToken(hash);
-  }, []);
+  // from redux
+  const accessToken = useSelector(state => state.token.token);
 
+  console.log(accessToken);
   return (
     <>
       <header>
-        <Navbar accessTokenNavbar={accessToken} selected={selected} setSelected={setSelected} />
+        <Navbar selected={selected} setSelected={setSelected} />
       </header>
       <body>
         {accessToken ? (
