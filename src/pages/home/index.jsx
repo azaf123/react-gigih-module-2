@@ -1,10 +1,10 @@
-import Style from "./style.module.css";
+import "./style.css";
 import Navbar from "../../components/navbar/navbar-master";
 import CardPlaylist from "../../components/card-playlist";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
-
+import SearchHook from '../../components/navbar/searchHook'
+import { setRemoveAccessToken } from "../../redux/slices/tokenSlice";
 
 const Home = () => {
   // state = {
@@ -15,17 +15,8 @@ const Home = () => {
 
   // }
   const [selected, setSelected] = useState([]);
-  // const [accessToken, setAccessToken] = useState("");
-  // useEffect(() => {
-  //   const hash = window.location.hash
-  //     .substring(1, window.location.hash.length - 1)
-  //     .split("&")[0]
-  //     .split("=")[1];
-  //   setAccessToken(hash);
-  // }, []);
-
   // from redux
-  const accessToken = useSelector(state => state.token.token);
+  const accessToken = useSelector((state) => state.token.token);
 
   console.log(accessToken);
   return (
@@ -34,17 +25,14 @@ const Home = () => {
         <Navbar selected={selected} setSelected={setSelected} />
       </header>
       <body>
-        {accessToken ? (
-          <>
-          
-            <div className="cardPlaylist">
-              <CardPlaylist accessToken={accessToken} selected={selected} setSelected={setSelected}/>
-            </div>
-            
-          </>
-        ) : (
-          <h1>Please Login</h1>
-        )}
+        <>
+          <div className="cardPlaylist">
+            <CardPlaylist selected={selected} setSelected={setSelected} />
+          </div>
+          <div className="search-song">
+          <SearchHook selected={selected} setSelected={setSelected} />
+          </div>
+        </>
       </body>
     </>
   );

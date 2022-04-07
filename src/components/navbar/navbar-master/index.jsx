@@ -1,14 +1,64 @@
 import SearchHook from "../searchHook";
 import Login from "../login";
-import Style from "./style.module.css"; 
-import { useSelector } from "react-redux";
-const Navbar = ({selected,setSelected}) => {
-  const accessToken = useSelector(state => state.token.token);
+import  "./style.css";
+import { useDispatch } from "react-redux";
+import { setRemoveAccessToken } from "../../../redux/slices/tokenSlice";
+
+const Navbar = ({ selected, setSelected }) => {
+  const dispatch = useDispatch();
   return (
     <>
-      <div className={Style.container}>
-        {accessToken ? <SearchHook  selected={selected} setSelected={setSelected}/> : <Login />}
-      </div>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+           ZAFYZA
+          </a>
+
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">Home</a>
+
+            <a class="navbar-item">Documentation</a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">More</a>
+
+              <div class="navbar-dropdown">
+                <a class="navbar-item">About</a>
+                <a class="navbar-item">Jobs</a>
+                <a class="navbar-item">Contact</a>
+                <hr class="navbar-divider" />
+                <a class="navbar-item">Report an issue</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary" onClick={() => dispatch(setRemoveAccessToken())}>
+                  <strong>Log Out</strong>
+                </a>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
     </>
   );
 };

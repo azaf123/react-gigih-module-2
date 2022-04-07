@@ -1,55 +1,21 @@
-.card-playlist{
-    
-    background-color: #000000;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-    border-radius: 10px;
-    width: 40%;
-    height: 100%;
-    margin: 20px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    
-
+.create-playlist{
+    background-color: black;
+    color: rgb(255, 255, 255);
+  
 }
+.get-playlist{
+    background-color: black;
+    color: rgb(255, 255, 255);
+  
+}
+ 
+
 .playlist-data{
-    background-color: #000000;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-    border-radius: 10px;
-    width: 30%;
-    height: 100%;
-    margin: 20px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
+display: inline-block;
+margin-left: 10px;
+margin-top: 10px;
+
+
 }
-.playlist{
-    background-color: #000000;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-
-    border-radius: 10px;
-    width: 60%;
-    height: 100%;
-    margin: 20px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
 
 
-    
-}

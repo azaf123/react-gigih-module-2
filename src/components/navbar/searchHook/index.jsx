@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import Style from "./style.module.css";
+import "./style.css";
 import SongTable from "../../table-song";
-import CardPlaylist from "../../card-playlist";
 import { useSelector } from "react-redux";
 
 const SearchHook = ({selected,setSelected }) => {
@@ -10,13 +9,21 @@ const SearchHook = ({selected,setSelected }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
-
-  // useEffect(() =>
-  //  {
-  //     console.log('token '+ accessToken)
-  // }, [])
-
+useEffect(() => {
+  fetch(
+    "https://api.spotify.com/v1/search?q=tulus&type=track&limit=10&access_token=" + accessToken
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data.tracks.items);
+      setIsLoading(false);
+    })
+    .catch((err) => {
+      setIsError(true);
+      setIsLoading(false);
+      console.log(err);
+    });
+}, [search]);
   const getData = () => {
     fetch(
       "https://api.spotify.com/v1/search?q=" +
@@ -54,13 +61,27 @@ const SearchHook = ({selected,setSelected }) => {
     setSelected(selected.filter((song) => song !== uri));
   };
 
-  console.log(selected);
+  console.log(search);
 
   return (
-    <div>
-      <h1>Search</h1>
-      <input type="text" value={search} onChange={handleSearch} />
-      <button onClick={handleSubmit}>Search</button>
+    <>
+    <div className="container">
+      <hr />
+    <div className="title">
+                <h1>Search Song</h1>
+              </div>
+      <form onSubmit={handleSubmit}>
+    <div class="level-item">
+      <div class="field has-addons">
+        <p class="control">
+        <input className="input" type="text" value={search} onChange={handleSearch} />
+        </p>
+        <p class="control">
+        <button className="button">Search</button>
+        </p>
+      </div>
+    </div>
+    </form>
         {isLoading ? (
             <div>Loading...</div>
         ) : isError ? (
@@ -75,61 +96,9 @@ const SearchHook = ({selected,setSelected }) => {
 
           </>
         )}
-
-    </div>
+</div>
+    </>
   );
 };
 
 export default SearchHook;
-{
-  /* <div>
-<div className={Style.title}>
-  <h3>Table Tracks and Card Tracks</h3>
-</div>
-<div className={Style.table}>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Song image</th>
-        <th>Song</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>Add</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {data.map((song, index) => (
-        <tr key={song.id}>
-          <td>{index + 1}</td>
-          <td>
-              <img
-                  src={song.album.images[0].url}
-                  alt={song.name}
-                  width="50"
-                  height="50"
-              />                 
-          </td>
-          <td>{song.name}</td>
-          <td>{song.artists[0].name}</td>
-          <td>{song.album.name}</td>
-          <td>
-            {selected.includes(song.uri) ? (
-              <DeselectSong
-                songSelected={selected}
-                setSongDeselected={()=>handleSongDeselected(song.uri)}
-              />
-            ) : (
-              <SelectSong
-                songSelected={selected}
-                setSongSelected={() => handleSongSelected(song.uri)}
-              />
-            )}
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div> */
-}

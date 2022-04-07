@@ -3,10 +3,10 @@ import { Button } from "react-bootstrap";
 import "./style.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { setRemoveAccessToken } from "../../redux/slices/tokenSlice";
 const CardPlaylist = ({ selected }) => {
-
-  const accessToken = useSelector(state => state.token.token);
+  const accessToken = useSelector((state) => state.token.token);
   const [playlist, setPlaylist] = useState({
     namePlaylist: "",
     descriptionPlaylist: "",
@@ -94,18 +94,14 @@ const CardPlaylist = ({ selected }) => {
     event.preventDefault();
 
     const errors = { ...playlist };
-    if (errors.namePlaylist.length <= 10) {
-      setErrors({
-        ...errors,
-        namePlaylist: "Minimum 10 characters",
-      });
-    } else {
-      setErrors({
-        ...errors,
-        namePlaylist: "",
-      });
+   
+    if(errors.namePlaylist.length <= 10){
+      return alert("Minimum 10 characters for name of playlist")
     }
-    postData();
+    else{
+      postData();
+    }
+    
   };
 
   const handleFormChange = (event) => {
@@ -128,92 +124,87 @@ const CardPlaylist = ({ selected }) => {
     }
   };
 
+
+
   return (
     <>
       <div className="container">
-        <h4>1. You can search first the song in the searchbar</h4>
-        <h4>2. You can add the song to the playlist</h4>
-        <h4>3. You can create a new playlist</h4>
-        <h4>
-          4. You can click get playlis button on the left to check your playlist
-          that you have created
-        </h4>
-        <h4>4. You can see the playlist</h4>
-
-        <div className="row">
-          <div className="col-lg-6">
-            <div className="card-playlist">
-              <div className="title">
-                <h1>My Playlist</h1>
-              </div>
-              <Button variant="primary" onClick={getPlaylist}>
-                Get playlist
-              </Button>
-            </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="playlist">
+        <div className="columns">
+          <div className="column is-one-fifth">
+            <div className="create-playlist box">
               <div className="title">
                 <h1>Create playlist</h1>
               </div>
-              <div className="form">
+              <div className="form-playlist">
                 <form onSubmit={handleFormSubmit}>
-                  <div className="playlistName">
-                    <label>Name</label>
-                    <input
-                      required
-                      name="namePlaylist"
-                      type="text"
-                      placeholder="Name playlist"
-                      value={playlist.namePlaylist}
-                      onChange={handleFormChange}
-                    />
-                    {hasError.namePlaylist && (
-                      <p className="error">{hasError.namePlaylist}</p>
-                    )}
+                  <div className="playlistName field">
+                    <label className="label">Name</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        required
+                        name="namePlaylist"
+                        type="text"
+                        placeholder="Name playlist"
+                        value={playlist.namePlaylist}
+                        onChange={handleFormChange}
+                      />
+                      {hasError.namePlaylist && (
+                        <p className="error">{hasError.namePlaylist}</p>
+                      )}
+                    </div>
                   </div>
-                  <div className="playlistDescription">
-                    <label>Description</label>
-                    <input
-                      name="descriptionPlaylist"
-                      type="text"
-                      placeholder="Description"
-                      value={playlist.descriptionPlaylist}
-                      onChange={handleFormChange}
-                    />
+                  <div className="playlistDescription field">
+                    <label className="label">Description</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        name="descriptionPlaylist"
+                        type="text"
+                        placeholder="Description"
+                        value={playlist.descriptionPlaylist}
+                        onChange={handleFormChange}
+                      />
+                    </div>
                   </div>
-                  <Button variant="primary" type="submit">
+                  <button class="button is-link" onClick={getPlaylist}>
                     Submit
-                  </Button>{" "}
+                  </button>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-        <div className="playlist-data-title">
-          <br></br>
-          <br></br>
-          <br></br>
-          <h5>Playlist</h5>
-        </div>
-
-        {playlistData.map(
+          <div className="column is-one-fifth">
+            <div className="get-playlist box">
+              <div className="title">
+                <h1>My Playlist</h1>
+              </div>
+              <button class="button is-primary" onClick={getPlaylist}>
+                Show Playlist
+              </button>
+            </div>
+          </div>
+          <div className="column is-three-quarters">
+            <div className="playlist-data-title">
+              <h1 className="title">My Playlist</h1>
+            </div>
+            {playlistData.map(
           (item, index) =>
             item.tracks.total >= 0 &&
             (console.log(item),
             (
-              <div className="playlist-data">
+              <div className="playlist-data box">
                 <div key={index}>
                   <h5>{item.name}</h5>
                   <p>{item.description}</p>
                   <p>{item.tracks.total}</p>
-                  <Button variant="primary" onClick={addSong}>
-                    Add song
-                  </Button>
                 </div>
               </div>
             ))
         )}
+          </div>
+        </div>
+     
       </div>
     </>
   );
