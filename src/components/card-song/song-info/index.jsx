@@ -1,4 +1,4 @@
-import Style from "./style.module.css";
+import Style from './style.module.css'
 const SongInfo = ({ SongTitle, SongArtist }) => {
   return (
     <div className="container">
@@ -9,6 +9,6 @@ const SongInfo = ({ SongTitle, SongArtist }) => {
         </div>
       </div>
     </div>
-  );
-};
-export default SongInfo;
+  )
+}
+export default SongInfo

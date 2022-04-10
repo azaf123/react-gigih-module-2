@@ -1,6 +1,6 @@
-import Style from "./style.module.css";
+import Style from './style.module.css'
 const SongImage = ({ song }) => {
-    return (
+  return (
 
         <div className={Style.container}>
         <div className={Style.songImage}>
@@ -11,6 +11,6 @@ const SongImage = ({ song }) => {
             </div>
         </div>
         </div>
-    );
+  )
 }
-export default SongImage;
+export default SongImage

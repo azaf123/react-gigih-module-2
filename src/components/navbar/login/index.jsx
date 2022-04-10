@@ -1,56 +1,51 @@
+/* eslint-disable camelcase */
 
-import { Component, useEffect } from 'react'
 import './style.css'
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux'
-import { setAccessToken } from '../../../redux/slices/tokenSlice';
-const AUTH_URL = 'https://accounts.spotify.com/authorize'
-const client_id = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`
-const redirect_uri = 'http://localhost:3000/'
-const scopes = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public playlist-read-collaborative user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-top-read user-follow-read user-follow-modify user-library-read user-library-modify'
-const url = `${AUTH_URL}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&response_type=token&show_dialog=true`;
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import React from 'react'
+import { setAccessToken } from '../../../redux/slices/tokenSlice'
+// const AUTH_URL = 'https://accounts.spotify.com/authorize'
+// const client_id = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`
+// const redirect_uri = 'http://localhost:3000/'
+// const scopes = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public playlist-read-collaborative user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-top-read user-follow-read user-follow-modify user-library-read user-library-modify'
+// const url = `${AUTH_URL}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&response_type=token&show_dialog=true`
 
+const Login = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
 
+  // to handle the login button
+  const handleLogin = () => {
+    window.location.replace(
+          `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=http://localhost:3000/&scope=playlist-modify-private playlist-read-private`
+    )
+  }
 
-const Login =() => {
-    const dispatch = useDispatch()
-    const history = useHistory()
-   const accessToken = useSelector((state) => state.token.token)
-    
-    // to handle the login button
-    const handleLogin = () => {
-        window.open(
-          `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID }&response_type=token&redirect_uri=http://localhost:3000/&scope=playlist-modify-private playlist-read-private`
-        );
-      };
-      
-                
-      const accessTokenFromUrl = window.location.hash
-      .substring(1, window.location.hash.length - 1)
-      .split("&")[0]
-      .split("=")[1];
+  const accessTokenFromUrl = window.location.hash
+    .substring(1, window.location.hash.length - 1)
+    .split('&')[0]
+    .split('=')[1]
 
-      if (accessTokenFromUrl) {
-        dispatch(setAccessToken({ accessToken: accessTokenFromUrl }));
-        history.push({
-          pathname: "/create-playlist",
-        });
-      }
+  if (accessTokenFromUrl) {
+    dispatch(setAccessToken({ accessToken: accessTokenFromUrl }))
+    history.push({
+      pathname: '/create-playlist'
+    })
+  }
 
-        return (
+  return (
             <div className='container'>
                 <div className='login'>
                 <form>
                     <div className="btn-grad">
-                        <button onClick={()=>handleLogin()}>LOGIN
+                        <button onClick={() => handleLogin()}>LOGIN
                         </button>
                     </div>
                 </form>
                 </div>
             </div>
-        )
-    
+  )
 }
 
-export default Login;
+export default Login

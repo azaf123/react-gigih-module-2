@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LoginPage from "../pages/login";
-import PrivateRoute from "./privateRoute";
-import Home from "../pages/home";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import LoginPage from '../pages/login'
+import PrivateRoute from './privateRoute'
+import Home from '../pages/home'
+import React from 'react'
 const Routers = () => {
-//   const accessToken = useSelector((state) => state.token.token);
-
   return (
     <Router>
       <Switch>
@@ -15,6 +14,6 @@ const Routers = () => {
         </PrivateRoute>
       </Switch>
     </Router>
-  );
-};
-export default Routers;
+  )
+}
+export default Routers

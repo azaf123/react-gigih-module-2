@@ -1,136 +1,130 @@
-import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import "./style.css";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { setRemoveAccessToken } from "../../redux/slices/tokenSlice";
-const CardPlaylist = ({ selected }) => {
-  const accessToken = useSelector((state) => state.token.token);
-  const [playlist, setPlaylist] = useState({
-    namePlaylist: "",
-    descriptionPlaylist: "",
-  });
-  const [hasError, setErrors] = useState(false);
-  const [playlistData, setPlaylistData] = useState([]);
-  const [playlist_id, setPlaylist_id] = useState("");
+import React, { useEffect, useState } from 'react'
+import './style.css'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
+const CardPlaylist = () => {
+  const accessToken = useSelector((state) => state.token.token)
+  const [playlist, setPlaylist] = useState({
+    namePlaylist: '',
+    descriptionPlaylist: ''
+  })
+  const [hasError, setErrors] = useState(false)
+  const [playlistData, setPlaylistData] = useState([])
+  const [playlistID, setplaylistID] = useState('')
+  const selected = useSelector((state) => state.song.selected)
   // get data playlist
   const getPlaylist = () => {
     axios
-      .get(`https://api.spotify.com/v1/me/playlists`, {
+      .get('https://api.spotify.com/v1/me/playlists', {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+          Authorization: `Bearer ${accessToken}`
+        }
       })
       .then((res) => {
-        console.log("playlist" + res.data.items);
-        setPlaylistData(res.data.items);
+        console.log('playlist' + res.data.items)
+        setPlaylistData(res.data.items)
       })
       .catch((err) => {
-        console.log(err.message);
-      });
-  };
+        console.log(err.message)
+      })
+  }
 
   // post data playlist
 
   const postData = async () => {
     await axios
       .post(
-        "https://api.spotify.com/v1/users/31hrne4yvy6qretxcpgpxj5cnrsi/playlists",
+        'https://api.spotify.com/v1/users/31hrne4yvy6qretxcpgpxj5cnrsi/playlists',
 
         {
           name: playlist.namePlaylist,
           description: playlist.descriptionPlaylist,
-          public: false,
+          public: false
         },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+            Authorization: `Bearer ${accessToken}`
+          }
         }
       )
       .then((res) => {
-        console.log(res.data);
-        setPlaylist_id(res.data.id);
-        return alert("Playlist created");
+        console.log(res.data)
+        setplaylistID(res.data.id)
+        return alert('Playlist created')
       })
       .catch((err) => {
-        console.log(err.message);
-      });
-  };
+        console.log(err.message)
+      })
+  }
 
   // add song to playlist
   const addSong = () => {
     axios
       .post(
-        `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
+        `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
         {
-          uris: selected,
+          uris: selected
         },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+            Authorization: `Bearer ${accessToken}`
+          }
         }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
       })
       .catch((err) => {
-        console.log(err.message);
-      });
-  };
+        console.log(err.message)
+      })
+  }
 
   useEffect(() => {
-    addSong();
-  }, [playlist_id]);
+    addSong()
+  }, [playlistID])
 
   useEffect(() => {
-    getPlaylist();
-  }, []);
+    getPlaylist()
+  }, [])
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const errors = { ...playlist };
-   
-    if(errors.namePlaylist.length <= 10){
-      return alert("Minimum 10 characters for name of playlist")
+    const errors = { ...playlist }
+
+    if (errors.namePlaylist.length <= 10) {
+      return alert('Minimum 10 characters for name of playlist')
+    } else {
+      postData()
     }
-    else{
-      postData();
-    }
-    
-  };
+  }
 
   const handleFormChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setPlaylist({
       ...playlist,
-      [name]: value,
-    });
-    const errors = { ...playlist };
+      [name]: value
+    })
+    const errors = { ...playlist }
     if (errors.namePlaylist.length <= 10) {
       setErrors({
         ...errors,
-        namePlaylist: "Minimum 10 characters",
-      });
+        namePlaylist: 'Minimum 10 characters'
+      })
     } else {
       setErrors({
         ...errors,
-        namePlaylist: "",
-      });
+        namePlaylist: ''
+      })
     }
-  };
-
-
+  }
 
   return (
     <>
       <div className="container">
         <div className="columns">
-          <div className="column is-one-fifth">
+          <div className="column is-one-quarter">
             <div className="create-playlist box">
               <div className="title">
                 <h1>Create playlist</h1>
@@ -167,7 +161,7 @@ const CardPlaylist = ({ selected }) => {
                       />
                     </div>
                   </div>
-                  <button class="button is-link" onClick={getPlaylist}>
+                  <button className="button is-link" onClick={getPlaylist}>
                     Submit
                   </button>
                 </form>
@@ -179,18 +173,18 @@ const CardPlaylist = ({ selected }) => {
               <div className="title">
                 <h1>My Playlist</h1>
               </div>
-              <button class="button is-primary" onClick={getPlaylist}>
+              <button className="button is-primary" onClick={getPlaylist}>
                 Show Playlist
               </button>
             </div>
           </div>
-          <div className="column is-three-quarters">
+          <div className="column is-three-half">
             <div className="playlist-data-title">
               <h1 className="title">My Playlist</h1>
             </div>
             {playlistData.map(
-          (item, index) =>
-            item.tracks.total >= 0 &&
+              (item, index) =>
+                item.tracks.total >= 0 &&
             (console.log(item),
             (
               <div className="playlist-data box">
@@ -201,12 +195,12 @@ const CardPlaylist = ({ selected }) => {
                 </div>
               </div>
             ))
-        )}
+            )}
           </div>
         </div>
-     
+
       </div>
     </>
-  );
-};
-export default CardPlaylist;
+  )
+}
+export default CardPlaylist

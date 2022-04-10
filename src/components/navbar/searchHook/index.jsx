@@ -1,67 +1,73 @@
-import { useEffect, useState, useCallback } from "react";
-import "./style.css";
-import SongTable from "../../table-song";
-import { useSelector } from "react-redux";
+/* eslint-disable no-const-assign */
+import React, { useEffect } from 'react'
+import './style.css'
+import SongTable from '../../table-song'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSearch, setData, setIsError, setIsLoading } from '../../../redux/slices/songSlice'
 
-const SearchHook = ({selected,setSelected }) => {
-  const accessToken = useSelector(state => state.token.token);
-  const [search, setSearch] = useState("");
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-useEffect(() => {
-  fetch(
-    "https://api.spotify.com/v1/search?q=tulus&type=track&limit=10&access_token=" + accessToken
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      setData(data.tracks.items);
-      setIsLoading(false);
-    })
-    .catch((err) => {
-      setIsError(true);
-      setIsLoading(false);
-      console.log(err);
-    });
-}, [search]);
+const SearchHook = () => {
+  const dispatch = useDispatch()
+  const accessToken = useSelector(state => state.token.token)
+  const selected = useSelector(state => state.song.selected)
+  const search = useSelector(state => state.song.search)
+
+  const isLoading = useSelector(state => state.song.isLoading)
+  const isError = useSelector(state => state.song.isError)
+  useEffect(() => {
+    fetch(
+      'https://api.spotify.com/v1/search?q=tulus&type=track&limit=10&access_token=' + accessToken
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setData({ data: data.tracks.items }))
+        dispatch(setIsLoading({ isLoading: false }))
+      })
+      .catch((err) => {
+        dispatch(setIsError({ isError: true }))
+        dispatch(setIsLoading({ isLoading: true }))
+        console.log(err)
+      })
+  }, [search])
   const getData = () => {
     fetch(
-      "https://api.spotify.com/v1/search?q=" +
+      'https://api.spotify.com/v1/search?q=' +
         search +
-        "&type=track&limit=10&access_token=" +
+        '&type=track&limit=10&access_token=' +
         accessToken
     )
       .then((res) => res.json())
       .then((data) => {
-        setData(data.tracks.items);
-        setIsLoading(false);
+        dispatch(setData({ data: data.tracks.items }))
+
+        dispatch(setIsLoading({ isLoading: false }))
       })
       .catch((err) => {
-        setIsError(true);
-        setIsLoading(false);
-        console.log(err);
-      });
-  };
+        dispatch(setIsError({ isError: true }))
+        dispatch(setIsLoading({ isLoading: true }))
+        console.log(err)
+      })
+  }
 
   // handle the search input
   const handleSearch = (event) => {
-    setSearch(event.target.value);
-  };
+    dispatch(setSearch({ search: event.target.value }))
+  }
   // handle the search button
   const handleSubmit = (event) => {
-    event.preventDefault();
-    getData();
-    setIsLoading(true);
-  };
-  const handleSongSelected = (uri) => {
-    setSelected([...selected, uri]);
-  };
+    event.preventDefault()
+    getData()
+    setIsLoading(true)
+  }
+  // const handleSongSelected = (uri) => {
+  //   dispatch(setSelected({ selected: [...selected, uri] }))
+  // }
 
-  const handleSongDeselected = (uri) => {
-    setSelected(selected.filter((song) => song !== uri));
-  };
+  // const handleSongDeselected = (uri) => {
+  //   dispatch(setSelected({ selected: selected.filter((song) => song !== uri) }))
+  // }
 
-  console.log(search);
+  console.log(search)
+  console.log(selected)
 
   return (
     <>
@@ -71,34 +77,34 @@ useEffect(() => {
                 <h1>Search Song</h1>
               </div>
       <form onSubmit={handleSubmit}>
-    <div class="level-item">
-      <div class="field has-addons">
-        <p class="control">
+    <div className="level-item">
+      <div className="field has-addons">
+        <p className="control">
         <input className="input" type="text" value={search} onChange={handleSearch} />
         </p>
-        <p class="control">
+        <p className="control">
         <button className="button">Search</button>
         </p>
       </div>
     </div>
     </form>
-        {isLoading ? (
+        {isLoading
+          ? (
             <div>Loading...</div>
-        ) : isError ? (
+            )
+          : isError
+            ? (
             <div>Error</div>
-        ) : (<>
+              )
+            : (<>
             <SongTable
-                data={data}
-                selected={selected}
-                handleSongSelected={handleSongSelected}
-                handleSongDeselected={handleSongDeselected}
             />
 
           </>
-        )}
+              )}
 </div>
     </>
-  );
-};
+  )
+}
 
-export default SearchHook;
+export default SearchHook

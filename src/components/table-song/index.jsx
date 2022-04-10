@@ -1,7 +1,13 @@
-import SelectSong from "../card-song/select-song";
-import { DeselectSong } from "../card-song/select-song";
-import Style from "./style.module.css";
-const SongTable = ({ data,handleSongDeselected,handleSongSelected,selected }) => {
+/* eslint-disable react/prop-types */
+import SelectSong, { DeselectSong } from '../card-song/select-song'
+import React from 'react'
+import Style from './style.module.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { handleSongSelected, handleSongDeselected } from '../../redux/slices/songSlice'
+const SongTable = () => {
+  const selected = useSelector(state => state.song.selected)
+  const data = useSelector(state => state.song.data)
+  const dispatch = useDispatch()
   return (
     <div>
       <div className={Style.title}>
@@ -36,15 +42,17 @@ const SongTable = ({ data,handleSongDeselected,handleSongSelected,selected }) =>
                 <td>{song.artists[0].name}</td>
                 <td>{song.album.name}</td>
                 <td>
-                    {selected.includes(song.uri) ? (   
+                    {selected.includes(song.uri)
+                      ? (
                         <DeselectSong
-                            setSongDeselected={()=>handleSongDeselected(song.uri)}
+                            setSongDeselected={() => dispatch(handleSongDeselected({ uri: song.uri }))}
                         />
-                    ) : (
+                        )
+                      : (
                         <SelectSong
-                            setSongSelected={() => handleSongSelected(song.uri)}
+                            setSongSelected={() => dispatch(handleSongSelected({ uri: song.uri }))}
                         />
-                    )}
+                        )}
 
                 </td>
               </tr>
@@ -53,6 +61,6 @@ const SongTable = ({ data,handleSongDeselected,handleSongSelected,selected }) =>
         </table>
       </div>
     </div>
-  );
-};
-export default SongTable;
+  )
+}
+export default SongTable

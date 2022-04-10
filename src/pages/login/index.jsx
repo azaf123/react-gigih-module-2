@@ -1,5 +1,6 @@
-import Login from "../../components/navbar/login";
-import "./style.css";
+import Login from '../../components/navbar/login'
+import './style.css'
+import React from 'react'
 const LoginPage = () => {
   return (
     <div className="container">
@@ -12,6 +13,6 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-  );
-};
-export default LoginPage;
+  )
+}
+export default LoginPage

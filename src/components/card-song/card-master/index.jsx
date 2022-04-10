@@ -1,11 +1,11 @@
-import SongImage from "../song-image"
-import SongInfo from "../song-info"
-import SelectSong from "../select-song"
+import SongImage from '../song-image'
+import SongInfo from '../song-info'
+import SelectSong from '../select-song'
 // import data from "../../../data"
-import dataloop from "../../../dataloop"
-import Style from "./style.module.css"
-const CardMaster = ({song,artist,title}) => {
-    return (
+import dataloop from '../../../dataloop'
+import Style from './style.module.css'
+const CardMaster = ({ song, artist, title }) => {
+  return (
         <div className={Style.container}>
             <div className={Style.card}>
 
@@ -30,6 +30,6 @@ const CardMaster = ({song,artist,title}) => {
                     </div>
             </div>
         </div>
-    )
+  )
 }
-export default CardMaster;
+export default CardMaster

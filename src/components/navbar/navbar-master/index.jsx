@@ -1,22 +1,22 @@
-import SearchHook from "../searchHook";
-import Login from "../login";
-import  "./style.css";
-import { useDispatch } from "react-redux";
-import { setRemoveAccessToken } from "../../../redux/slices/tokenSlice";
+import React from 'react'
+import './style.css'
+import { useDispatch } from 'react-redux'
+import { setRemoveAccessToken } from '../../../redux/slices/tokenSlice'
 
-const Navbar = ({ selected, setSelected }) => {
-  const dispatch = useDispatch();
+const Navbar = () => {
+  const dispatch = useDispatch()
+
   return (
     <>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="https://bulma.io">
            ZAFYZA
           </a>
 
           <a
             role="button"
-            class="navbar-burger"
+            className="navbar-burger"
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -27,32 +27,32 @@ const Navbar = ({ selected, setSelected }) => {
           </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">Home</a>
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <a className="navbar-item">Home</a>
 
-            <a class="navbar-item">Documentation</a>
+            <a className="navbar-item">Documentation</a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">More</a>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">More</a>
 
-              <div class="navbar-dropdown">
-                <a class="navbar-item">About</a>
-                <a class="navbar-item">Jobs</a>
-                <a class="navbar-item">Contact</a>
-                <hr class="navbar-divider" />
-                <a class="navbar-item">Report an issue</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item">About</a>
+                <a className="navbar-item">Jobs</a>
+                <a className="navbar-item">Contact</a>
+                <hr className="navbar-divider" />
+                <a className="navbar-item">Report an issue</a>
               </div>
             </div>
           </div>
 
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary" onClick={() => dispatch(setRemoveAccessToken())}>
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                <a className="button is-primary" onClick={() => dispatch(setRemoveAccessToken())}>
                   <strong>Log Out</strong>
                 </a>
-               
+
               </div>
             </div>
           </div>
@@ -60,6 +60,6 @@ const Navbar = ({ selected, setSelected }) => {
       </nav>
 
     </>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar
