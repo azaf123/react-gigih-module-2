@@ -4,6 +4,8 @@ import SelectSong from '../select-song'
 // import data from "../../../data"
 import dataloop from '../../../dataloop'
 import Style from './style.module.css'
+import React from 'react'
+// eslint-disable-next-line react/prop-types
 const CardMaster = ({ song, artist, title }) => {
   return (
         <div className={Style.container}>

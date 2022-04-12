@@ -124,7 +124,7 @@ const CardPlaylist = () => {
     <>
       <div className="container">
         <div className="columns">
-          <div className="column is-one-quarter">
+          <div className="column is-two-fifths">
             <div className="create-playlist box">
               <div className="title">
                 <h1>Create playlist</h1>
@@ -178,6 +178,7 @@ const CardPlaylist = () => {
               </button>
             </div>
           </div>
+          </div>
           <div className="column is-three-half">
             <div className="playlist-data-title">
               <h1 className="title">My Playlist</h1>
@@ -187,18 +188,16 @@ const CardPlaylist = () => {
                 item.tracks.total >= 0 &&
             (console.log(item),
             (
-              <div className="playlist-data box">
-                <div key={index}>
+              <div className="playlist-data">
+                <div className="box myplaylist" key={index}>
                   <h5>{item.name}</h5>
                   <p>{item.description}</p>
-                  <p>{item.tracks.total}</p>
+                  <p>{item.tracks.total + ' songs'}</p>
                 </div>
               </div>
             ))
             )}
           </div>
-        </div>
-
       </div>
     </>
   )

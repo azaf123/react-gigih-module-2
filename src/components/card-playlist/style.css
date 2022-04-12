@@ -1,24 +1,28 @@
 .create-playlist{
-    background-color: black;
-    color: rgb(255, 255, 255);
+    background-color: rgb(223, 126, 126);
     width: max-content;
-    
-  
+
 }
 .get-playlist{
-    background-color: rgb(221, 0, 0);
+    background-color: rgb(223, 126, 126);
     color: rgb(255, 255, 255);
     width: fit-content;
  
   
 }
  
+.myplaylist{
+    background-color: rgb(32, 102, 163);
+    color: white;
+}
 
+/* using flex */
 .playlist-data{
-display: inline-block;
+display: inline-flex;
+width: auto;
+height: 150px;
 margin-left: 10px;
 margin-top: 10px;
-
 
 }
 

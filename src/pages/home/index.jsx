@@ -15,6 +15,7 @@ const Home = () => {
         <>
           <div className="cardPlaylist">
             <CardPlaylist selected={selected} setSelected={setSelected} />
+
           </div>
           <div className="search-song">
           <SearchHook selected={selected} setSelected={setSelected} />
