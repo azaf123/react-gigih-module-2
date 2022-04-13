@@ -2,7 +2,6 @@
 .title{
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px;
     text-align: left;
 }
 /* .table th{
@@ -41,62 +40,44 @@
 
 /* using grid */
 .container{
-    width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 40% 33%;
-    
-    
-
-}
-.image{ 
-   display: flex;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
     align-items: center;
-    grid-column: 1/2;
-    grid-row: 1/2;
-    background-color: #5a2222;
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: #000000 0px 0px 10px;
-    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    grid-template-columns: 30%;
+    /* grid-template-rows: 30%; */
+    border: 1px solid #000000;
 
-  
+ 
+
+
+    
+}
+.image{
+    grid-column: 1;
+    grid-row: 1/3 ;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+
+   
 
 }
 .info{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     grid-column: 2;
-    grid-row: 1/2;
-    background-color: #5a2222;
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: #000000 0px 0px 10px;
-    flex-direction: column;
-    color: white;
-    margin: 10px;
+    grid-row: 1;
+ 
+}
+.button {
     
-    
-   
+    margin-bottom: 80px;
+    grid-column: 2;
+}
 
-}
-.button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-column: 2;
-    grid-row: 2;
-    background-color: #5a2222;
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: #000000 0px 0px 10px;
-    margin: 10px;
-   
-    
-}
+

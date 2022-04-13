@@ -1,7 +1,9 @@
-import Login from '../../components/navbar/login'
-import './style.css'
-import React from 'react'
-const LoginPage = () => {
+/* eslint-disable import/order */
+import Login from '../../components/navbar/login';
+import './style.css';
+import React from 'react';
+
+function LoginPage() {
   return (
     <div className="container">
       <div className="title">
@@ -13,6 +15,6 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default LoginPage
+export default LoginPage;

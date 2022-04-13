@@ -1,5 +1,6 @@
-import Style from './style.module.css'
-const SongInfo = ({ SongTitle, SongArtist }) => {
+import Style from "./style.module.css";
+
+function SongInfo({ SongTitle, SongArtist }) {
   return (
     <div className="container">
       <div className="card">
@@ -9,6 +10,6 @@ const SongInfo = ({ SongTitle, SongArtist }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default SongInfo
+export default SongInfo;
