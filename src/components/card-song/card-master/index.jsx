@@ -1,10 +1,10 @@
-import React from "react";
-import SongImage from "../song-image";
-import SongInfo from "../song-info";
-import SelectSong from "../select-song";
+import React from 'react';
+import SongImage from '../song-image';
+import SongInfo from '../song-info';
+import SelectSong from '../select-song';
 // import data from "../../../data"
-import dataloop from "../../../dataloop";
-import Style from "./style.module.css";
+import dataloop from '../../../dataloop';
+import Style from './style.module.css';
 // eslint-disable-next-line react/prop-types
 function CardMaster({ song, artist, title }) {
   return (

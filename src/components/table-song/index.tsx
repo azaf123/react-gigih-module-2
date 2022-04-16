@@ -7,15 +7,15 @@ import {
   handleSongSelected,
   handleSongDeselected,
 } from '../../redux/slices/songSlice';
+import { RootState } from '../../redux/store';
 
 function SongTable() {
-  const selected = useSelector((state) => state.song.selected);
-  const data = useSelector((state) => state.song.data);
+  const selected = useSelector((state: RootState) => state.song.selected);
+  const data = useSelector((state: RootState) => state.song.data);
   const dispatch = useDispatch();
   return (
     <div>
       {data.map((song) => (
-
         <div className={Style.container} key={song.id}>
 
           <div className={Style.image}>

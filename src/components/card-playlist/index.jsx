@@ -8,9 +8,11 @@ import './style.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Box, CardContent, Typography } from '@mui/material';
+import { RootState } from '../../redux/store';
 
 function CardPlaylist() {
-  const accessToken = useSelector((state) => state.token.token);
+  const accessToken = useSelector((state: RootState) => state.token.accessToken);
+  const selected = useSelector((state: RootState) => state.song.selected);
   const [playlist, setPlaylist] = useState({
     namePlaylist: '',
     descriptionPlaylist: '',
@@ -18,7 +20,7 @@ function CardPlaylist() {
   const [hasError, setErrors] = useState(false);
   const [playlistData, setPlaylistData] = useState([]);
   const [playlistID, setplaylistID] = useState('');
-  const selected = useSelector((state) => state.song.selected);
+
   // get data playlist
   const getPlaylist = () => {
     axios

@@ -12,15 +12,15 @@ import {
   setIsError,
   setIsLoading,
 } from '../../../redux/slices/songSlice';
+import { RootState } from '../../../redux/store';
 
 function SearchHook() {
   const dispatch = useDispatch();
-  const accessToken = useSelector((state) => state.token.token);
-  const selected = useSelector((state) => state.song.selected);
-  const search = useSelector((state) => state.song.search);
-
-  const isLoading = useSelector((state) => state.song.isLoading);
-  const isError = useSelector((state) => state.song.isError);
+  const accessToken = useSelector((state: RootState) => state.token.accessToken);
+  const selected = useSelector((state: RootState) => state.song.selected);
+  const search = useSelector((state: RootState) => state.song.search);
+  const isLoading = useSelector((state: RootState) => state.song.isLoading);
+  const isError = useSelector((state: RootState) => state.song.isError);
   useEffect(() => {
     fetch(
       `https://api.spotify.com/v1/search?q=tulus&type=track&limit=10&access_token=${accessToken}`,
@@ -86,7 +86,7 @@ function SearchHook() {
   };
 
   // handle the search input
-  const handleSearch = (event) => {
+  const handleSearch = (event: { target: { value: any; }; }) => {
     dispatch(
       setSearch({
         search: event.target.value,
@@ -94,10 +94,9 @@ function SearchHook() {
     );
   };
   // handle the search button
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     getData();
-    setIsLoading(true);
   };
   // const handleSongSelected = (uri) => {
   //   dispatch(setSelected({ selected: [...selected, uri] }))

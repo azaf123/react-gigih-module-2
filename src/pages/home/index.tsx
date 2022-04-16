@@ -2,7 +2,7 @@ import './style.css';
 import React from 'react';
 import Navbar from '../../components/navbar/navbar-master';
 import CardPlaylist from '../../components/card-playlist';
-import SearchHook from '../../components/navbar/searchHook';
+import SearchHook from '../../components/navbar/searchHook/index';
 
 function Home() {
   return (

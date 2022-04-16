@@ -3,9 +3,10 @@
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import React from 'react';
+import { RootState } from '../../redux/store';
 
-function PrivateRoute({ component: Component, ...rest }) {
-  const accessToken = useSelector((state) => state.token.token);
+function PrivateRoute({ component: Component, ...rest }: any) {
+  const accessToken = useSelector((state: RootState) => state.token.accessToken);
   return (
     <Route
       {...rest}
@@ -15,7 +16,6 @@ function PrivateRoute({ component: Component, ...rest }) {
         <Redirect
           to={{
             pathname: '/',
-            state: { from: props.location },
           }}
         />
       ))}

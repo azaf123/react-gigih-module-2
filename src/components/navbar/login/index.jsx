@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/button-has-type */
 /* eslint-disable camelcase */
 

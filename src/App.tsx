@@ -10,7 +10,6 @@ import Theme from './theme';
 
 function App() {
   return (
-
     <ThemeProvider theme={Theme}>
       <Provider store={store}>
         <div className="App">

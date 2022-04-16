@@ -1,4 +1,4 @@
-import Style from "./style.module.css";
+import Style from './style.module.css';
 
 function SongImage({ song }) {
   return (

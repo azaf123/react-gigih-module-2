@@ -1,7 +1,28 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+type Data = {
+  id : string,
+  name : string,
+  artists : {
+    name : string,
+  }[],
+  album : {
+    name : string,
+    images : {
+      url : string,
+    }[],
+  },
+  uri : string,
+};
+type SongSlice = {
+  selected : string[],
+  search : string,
+  data : Data[],
+  isLoading : boolean,
+  isError : boolean,
+};
+const initialState : SongSlice = {
   selected: [],
   search: '',
   data: [],
@@ -12,23 +33,33 @@ const songSlice = createSlice({
   name: 'song',
   initialState,
   reducers: {
-    setSelected: (state, action) => {
+    setSelected: (state, action:PayloadAction<{
+      selected: string[],
+    }>) => {
       const { selected } = action.payload;
       state.selected = selected;
     },
-    setSearch: (state, action) => {
+    setSearch: (state, action:PayloadAction<{
+      search: string,
+    }>) => {
       const { search } = action.payload;
       state.search = search;
     },
-    setData: (state, action) => {
+    setData: (state, action:PayloadAction<{
+      data: Data[],
+    }>) => {
       const { data } = action.payload;
       state.data = data;
     },
-    setIsLoading: (state, action) => {
+    setIsLoading: (state, action:PayloadAction<{
+      isLoading: boolean,
+    }>) => {
       const { isLoading } = action.payload;
       state.isLoading = isLoading;
     },
-    setIsError: (state, action) => {
+    setIsError: (state, action:PayloadAction<{
+      isError: boolean,
+    }>) => {
       const { isError } = action.payload;
       state.isError = isError;
     },
