@@ -2,11 +2,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import './style.css';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { setRemoveAccessToken } from '../../../redux/slices/tokenSlice';
+import { useAppDispatch } from '../../../redux/store';
 
 function Navbar() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">

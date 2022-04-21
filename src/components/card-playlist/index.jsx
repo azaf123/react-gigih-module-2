@@ -20,7 +20,29 @@ function CardPlaylist() {
   const [hasError, setErrors] = useState(false);
   const [playlistData, setPlaylistData] = useState([]);
   const [playlistID, setplaylistID] = useState('');
+  const [user, setUser] = useState('');
 
+  // get user
+  const getUser = async () => {
+    try {
+      const response = await axios.get(
+        'https://api.spotify.com/v1/me',
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      );
+      console.log(response.data);
+      setUser(response.data.uri.substring(13));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+  console.log(user);
   // get data playlist
   const getPlaylist = () => {
     axios
@@ -43,7 +65,7 @@ function CardPlaylist() {
   const postData = async () => {
     await axios
       .post(
-        'https://api.spotify.com/v1/users/31hrne4yvy6qretxcpgpxj5cnrsi/playlists',
+        `https://api.spotify.com/v1/users/${user}/playlists`,
 
         {
           name: playlist.namePlaylist,

@@ -34,7 +34,7 @@ function Login() {
       pathname: '/create-playlist',
     });
   }
-
+  console.log(accessTokenFromUrl);
   return (
     <div className="container">
       <div className="login">

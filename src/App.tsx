@@ -7,7 +7,6 @@ import { ThemeProvider } from 'styled-components';
 import store from './redux/store';
 import Routers from './routers';
 import Theme from './theme';
-import SearchHook from './components/navbar/searchHook';
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
       <Provider store={store}>
         <div className="App">
           <Routers />
-          <SearchHook />
         </div>
       </Provider>
     </ThemeProvider>
