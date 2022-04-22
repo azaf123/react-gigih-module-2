@@ -80,8 +80,7 @@ function CardPlaylist() {
       )
       .then((res) => {
         console.log(res.data);
-        setplaylistID(res.data.id);
-        return alert('Playlist created');
+      
       })
       .catch((err) => {
         console.log(err.message);
