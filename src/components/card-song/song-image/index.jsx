@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import React from 'react';
 import Style from './style.module.css';
 
 function SongImage({ song }) {

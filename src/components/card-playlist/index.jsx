@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable react/button-has-type */
@@ -80,7 +81,6 @@ function CardPlaylist() {
       )
       .then((res) => {
         console.log(res.data);
-      
       })
       .catch((err) => {
         console.log(err.message);
